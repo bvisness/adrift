@@ -6,7 +6,7 @@
 [ext_resource path="res://ui/fonts/orbitron/orbitron-black.otf" type="DynamicFontData" id=4]
 [ext_resource path="res://ui/fonts/orbitron/orbitron-medium.otf" type="DynamicFontData" id=5]
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=1]
 
 size = 65
 use_mipmaps = false
@@ -14,7 +14,7 @@ use_filter = false
 font_data = ExtResource( 4 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=2]
 
 size = 23
 use_mipmaps = false
@@ -22,7 +22,7 @@ use_filter = false
 font_data = ExtResource( 5 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[node name="GameRoot" type="Spatial" index="0"]
+[node name="GameRoot" type="Spatial"]
 
 script = ExtResource( 1 )
 
@@ -102,7 +102,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 1 )
 text = "Game Over"
 percent_visible = 1.0
 lines_skipped = 0
@@ -180,7 +180,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 2 )
 text = "They're coming! Keep our shields up!"
 percent_visible = 1.0
 lines_skipped = 0
