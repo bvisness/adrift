@@ -8,8 +8,8 @@ const DAMAGE = 10
 
 var speed = 4
 
-export(SpatialMaterial) var good_material
-export(SpatialMaterial) var bad_material
+export(SpatialMaterial) var enemy_material
+export(SpatialMaterial) var player_material
 onready var mesh = get_node('MeshInstance')
 
 var heading = Vector3(0, 0, 0)
@@ -17,9 +17,12 @@ var heading = Vector3(0, 0, 0)
 enum BULLET_MODE { CONTROLLED, FREE }
 var mode = FREE
 
+enum BULLET_ALLEGIANCE { ENEMY, PLAYER, NEUTRAL }
+var allegiance = ENEMY
+
 func _ready():
 	heading = Vector3(0, 0, 0) - self.translation
-	mesh.set_surface_material(0, bad_material)
+	mesh.set_surface_material(0, enemy_material)
 
 #func _process(delta):
 #	pass
@@ -45,13 +48,23 @@ func move_and_stuff(offset):
 			collision_info.collider.hit(self)
 		else:
 			heading = heading.bounce(collision_info.normal)
-			switch_to_good()
-
-func switch_to_good():
-	mode = FREE
-	mesh.set_surface_material(0, good_material)
-	set_collision_mask_bit(0, false)
-	set_collision_mask_bit(1, true)
+			set_allegiance(PLAYER)
+	
+func set_allegiance(allegiance):
+	match allegiance:
+		ENEMY:
+			mesh.set_surface_material(0, enemy_material)
+			set_collision_mask_bit(0, true)
+			set_collision_mask_bit(1, false)
+		PLAYER:
+			mesh.set_surface_material(0, player_material)
+			set_collision_mask_bit(0, false)
+			set_collision_mask_bit(1, true)
+		NEUTRAL:
+			set_collision_mask_bit(0, false)
+			set_collision_mask_bit(1, false)
+		_:
+			print("WARNING! Unrecognized allegiance for bullet: " + str(allegiance))
 	
 func kill():
 	queue_free()

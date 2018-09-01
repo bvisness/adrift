@@ -10,6 +10,8 @@ var orbitDistance = 8
 
 var distanceLerpAmount = 1.4
 
+var invincible = false
+
 func _ready():
 	body.translation = Vector3(-50, 0, 0)
 
@@ -26,13 +28,17 @@ func die():
 	queue_free()
 
 func hit(bullet):
-	bullet.kill()
-	die()
+	if not invincible:
+		bullet.kill()
+		die()
 
 func fire():
 	var bullet = bulletScene.instance()
 	bullet.global_transform = body.global_transform
 	get_node("/root/GameRoot/Player/Bullets").add_child(bullet)
-	
+
+func set_invincible(i):
+	invincible = i
+
 func actual_orbit_distance():
 	return -body.translation.x

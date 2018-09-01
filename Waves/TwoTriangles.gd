@@ -10,18 +10,9 @@ onready var enemies = SafeEnemySet.new()
 var orbit_distance = 12
 var orbit_speed = 5
 var fire_time = 1
+var timeout = 10
 
-onready var enemies_1 = [
-	get_node("BasicEnemy"),
-	get_node("BasicEnemy2"),
-	get_node("BasicEnemy3"),
-]
-onready var enemies_2 = [
-	get_node("BasicEnemy4"),
-	get_node("BasicEnemy5"),
-	get_node("BasicEnemy6"),
-]
-onready var all_enemies = enemies_1 + enemies_2
+var shooting_active = false
 
 static func create(orbit_distance, orbit_speed, fire_time):
 	var wave = preload("res://Waves/TwoTriangles.tscn").instance()
