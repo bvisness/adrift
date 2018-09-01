@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Shield.dae" type="PackedScene" id=1]
+
+[sub_resource type="ConvexPolygonShape" id=1]
+
+points = PoolVector3Array( 0.865723, 0.342773, 0.544434, 0.865723, -0.320801, -0.544434, 0.865723, -0.320801, 0.544434, 0.939453, -0.299805, -0.499756, 0.939453, 0.322021, 0.499756, 0.939453, -0.299805, 0.499756, 0.865723, -0.320801, -0.544434, 0.939453, 0.322021, -0.499756, 0.939453, -0.299805, -0.499756, 0.865723, 0.342773, 0.544434, 0.939453, 0.322021, -0.499756, 0.865723, 0.342773, -0.544434, 0.865723, -0.320801, 0.544434, 0.939453, 0.322021, 0.499756, 0.865723, 0.342773, 0.544434, 0.865723, -0.320801, -0.544434, 0.939453, -0.299805, 0.499756, 0.865723, -0.320801, 0.544434, 0.865723, 0.342773, -0.544434, 0.939453, 0.322021, -0.499756, 0.865723, -0.320801, -0.544434, 0.865723, 0.342773, -0.544434, 0.939453, 0.322021, -0.499756, 0.865723, 0.342773, 0.544434, 0.939453, 0.322021, 0.499756, 0.939453, 0.322021, -0.499756, 0.865723, -0.320801, 0.544434, 0.939453, -0.299805, 0.499756, 0.939453, 0.322021, 0.499756, 0.865723, -0.320801, -0.544434, 0.939453, -0.299805, -0.499756, 0.939453, -0.299805, 0.499756 )
+
+[node name="ShieldPanel" instance=ExtResource( 1 )]
+
+[node name="KinematicBody" type="KinematicBody" parent="." index="3"]
+
+input_ray_pickable = true
+input_capture_on_drag = false
+collision_layer = 1
+collision_mask = 1
+axis_lock_linear_x = false
+axis_lock_linear_y = false
+axis_lock_linear_z = false
+axis_lock_angular_x = false
+axis_lock_angular_y = false
+axis_lock_angular_z = false
+collision/safe_margin = 0.001
+
+[node name="CollisionShape2" type="CollisionShape" parent="KinematicBody" index="0"]
+
+shape = SubResource( 1 )
+disabled = false
+
+

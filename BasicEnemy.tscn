@@ -1,0 +1,64 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://BasicEnemy.gd" type="Script" id=1]
+[ext_resource path="res://BasicEnemyBody.gd" type="Script" id=2]
+
+[sub_resource type="PrismMesh" id=1]
+
+custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
+left_to_right = 0.5
+size = Vector3( 2, 2, 2 )
+subdivide_width = 0
+subdivide_height = 0
+subdivide_depth = 0
+
+[sub_resource type="BoxShape" id=2]
+
+extents = Vector3( 0.416928, 0.462746, 0.448958 )
+
+[node name="BasicEnemy" type="Spatial"]
+
+script = ExtResource( 1 )
+
+[node name="KinematicBody" type="KinematicBody" parent="." index="0" groups=[
+"enemies",
+"damageable",
+]]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 0 )
+input_ray_pickable = true
+input_capture_on_drag = false
+collision_layer = 2
+collision_mask = 1
+axis_lock_linear_x = false
+axis_lock_linear_y = false
+axis_lock_linear_z = false
+axis_lock_angular_x = false
+axis_lock_angular_y = false
+axis_lock_angular_z = false
+collision/safe_margin = 0.001
+script = ExtResource( 2 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="MeshInstance" type="MeshInstance" parent="KinematicBody" index="0"]
+
+transform = Transform( -1.93868e-008, 0.443518, 1.93868e-008, 0, -1.93868e-008, 0.443518, 0.443518, 1.93868e-008, 8.47424e-016, 0, 0, 0 )
+layers = 1
+material_override = null
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+mesh = SubResource( 1 )
+skeleton = NodePath("..")
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="KinematicBody" index="1"]
+
+shape = SubResource( 2 )
+disabled = false
+
+
