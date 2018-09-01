@@ -9,7 +9,6 @@ onready var shield = get_node('Shield')
 onready var speed = 140;
 
 onready var health_bar = find_node("HealthBar")
-onready var game_over = find_node("GameOver")
 
 const TIME_UNTIL_RECHARGE = 3
 const RECHARGE_SPEED = 5.0
@@ -51,4 +50,3 @@ func hit(entity):
 func die():
 	emit_signal("died")
 	dead = true
-	game_over.visible = true
