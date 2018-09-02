@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/wavecomplete_pitched.wav-5497f612b0a1e2de9ebee0636876c2bb.sample"
+
+[deps]
+
+source_file="res://assets/sound/wavecomplete_pitched.wav"
+dest_files=[ "res://.import/wavecomplete_pitched.wav-5497f612b0a1e2de9ebee0636876c2bb.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

@@ -13,13 +13,13 @@ var orbitDistance = 8
 var distanceLerpAmount = 1.4
 
 var invincible = false
+var hits_left = 2
 
 enum FireType { NORMAL, SPIRAL }
 export(FireType) var fire_type = NORMAL
 
 export(float) var bullet_speed = 4
 export(float) var spiral_rotate_speed = 60
-
 
 func _ready():
 	if not fire_type:
@@ -42,7 +42,9 @@ func die():
 func hit(bullet):
 	if not invincible:
 		bullet.kill()
-		die()
+		hits_left -= 1
+		if hits_left <= 0:
+			die()
 
 func fire():
 	match fire_type:

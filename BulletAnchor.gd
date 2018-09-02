@@ -16,7 +16,7 @@ func release():
 	if bullet_ref.get_ref():
 		bullet_ref.get_ref().init_free()
 		bullet_ref.get_ref().heading = self.global_transform.origin
-		bullet_ref.get_ref().speed = 6
+		bullet_ref.get_ref().speed = 7
 	queue_free()
 	
 func relinquish_bullet_control():
