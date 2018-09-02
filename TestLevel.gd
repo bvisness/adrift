@@ -3,6 +3,7 @@ extends Spatial
 const TimerWave = preload("res://Waves/TimerWave.gd")
 const DialogueWave = preload("res://Waves/DialogueWave.gd")
 const MultiWave = preload("res://Waves/MultiWave.gd")
+const SequenceWave = preload("res://Waves/SequenceWave.gd")
 const BasicTriangle = preload("res://Waves/BasicTriangle.gd")
 const BasicTriangleSpiral = preload("res://Waves/BasicTriangleSpiral.gd")
 const TwoTriangles = preload("res://Waves/TwoTriangles.gd")
@@ -10,8 +11,29 @@ const VariableEnemies = preload("res://Waves/VariableEnemies.gd")
 const TwoAlternating = preload("res://Waves/TwoAlternating.gd")
 
 var waves = [
+#	MultiWave.create([
+#		BasicTriangle.create(12, 15, 1, 30),
+#		SequenceWave.create([
+#			TimerWave.create(2),
+#			BasicTriangle.create(12, 15, 1, 30),
+#		]),
+#		SequenceWave.create([
+#			TimerWave.create(4),
+#			BasicTriangle.create(12, 15, 1, 30),
+#		]),
+#		SequenceWave.create([
+#			TimerWave.create(6),
+#			BasicTriangle.create(12, 15, 1, 30),
+#		]),
+#		SequenceWave.create([
+#			TimerWave.create(8),
+#			BasicTriangle.create(12, 15, 1, 30),
+#		]),
+#	]),
 	TwoAlternating.create(12, 5, 0.65, 10),
+	TimerWave.create(2),
 	VariableEnemies.create(40, 15, -15, 0.1, 999999),
+	TimerWave.create(3),
 	MultiWave.create([
 		VariableEnemies.create(15, 15, 15, 0.5, 999999),
 		VariableEnemies.create(15, 18, 17, 0.5, 999999),
@@ -32,7 +54,6 @@ var waves = [
 		BasicTriangleSpiral.create(10, 10, 1, 50),
 		BasicTriangleSpiral.create(13.5, -10, 1, -50),
 	]),
-	preload("res://Waves/OrbitingBulletTest.tscn").instance(),
 ]
 var current_wave = null
 var next_wave_index = 0

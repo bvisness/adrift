@@ -1,7 +1,7 @@
 extends "res://Waves/Wave.gd"
 
 const SyncStopwatch = preload("res://Timing.gd").SyncStopwatch
-onready var stopwatch = SyncStopwatch.new()
+var stopwatch = SyncStopwatch.new()
 
 var timeout = 1
 
