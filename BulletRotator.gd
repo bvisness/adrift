@@ -15,7 +15,7 @@ func _ready():
 
 func init_at(position):
 	var newBullet = Bullet.instance()
-	newBullet.init_controlled()
+	newBullet.init_controlled(self)
 	
 	positioner.global_transform.origin = position
 	newBullet.global_transform.origin = position
@@ -37,3 +37,6 @@ func _process(delta):
 func move_bullet():
 	if bullet.get_ref():
 		bullet.get_ref().move_to(positioner.global_transform.origin)
+
+func relinquish_bullet_control():
+	queue_free()

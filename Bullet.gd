@@ -16,6 +16,7 @@ var heading = Vector3(0, 0, 0)
 
 enum BULLET_MODE { CONTROLLED, FREE }
 var mode = FREE
+var controller = null
 
 enum BULLET_ALLEGIANCE { ENEMY, PLAYER, NEUTRAL }
 var allegiance = ENEMY
@@ -31,8 +32,17 @@ func _physics_process(delta):
 	if mode == FREE:
 		var collision_info = move_and_stuff(heading.normalized() * (speed * delta))
 
-func init_controlled():
+func init_controlled(new_controller):
+	if controller and controller.get_ref():
+		controller.get_ref().relinquish_bullet_control()
+	
+	controller = weakref(new_controller)
 	mode = CONTROLLED
+
+func init_free():
+	if controller and controller.get_ref():
+		controller.get_ref().relinquish_bullet_control()
+	mode = FREE
 
 func move_to(position):
 	if mode == CONTROLLED:
@@ -44,11 +54,12 @@ func move_to(position):
 func move_and_stuff(offset):
 	var collision_info = move_and_collide(offset)
 	if collision_info:
-		if collision_info.collider.is_in_group('damageable'):
+		if collision_info.collider.is_in_group('bullet_can_hit'):
+			if collision_info.collider.is_in_group('bullet_bounce'):
+				heading = heading.bounce(collision_info.normal)
+				set_allegiance(PLAYER)
+				mode = FREE
 			collision_info.collider.hit(self)
-		else:
-			heading = heading.bounce(collision_info.normal)
-			set_allegiance(PLAYER)
 	
 func set_allegiance(allegiance):
 	match allegiance:

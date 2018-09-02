@@ -2,7 +2,7 @@
 
 [ext_resource path="res://BulletRotator.gd" type="Script" id=1]
 
-[node name="BulletRotator" type="Spatial"]
+[node name="BulletRotator" type="Spatial" index="0"]
 
 script = ExtResource( 1 )
 

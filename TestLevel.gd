@@ -9,15 +9,15 @@ const TwoTriangles = preload("res://Waves/TwoTriangles.gd")
 var waves = [
 #	TwoTriangles.create(12, 5, 1),
 #	TimerWave.create(1),
-	DialogueWave.create(self, 3, "We're under attack! Keep our shields up!"),
-	BasicTriangle.create(10, 5, 1),
-	TimerWave.create(1),
-	BasicTriangle.create(10, 30, 0.5),
-	TimerWave.create(1),
-	MultiWave.create([
-		DialogueWave.create(self, 3, "They're everywhere!"),
-		TwoTriangles.create(12, 5, 1),
-	]),
+#	DialogueWave.create(self, 3, "We're under attack! Keep our shields up!"),
+#	BasicTriangle.create(10, 5, 1),
+#	TimerWave.create(1),
+#	BasicTriangle.create(10, 30, 0.5),
+#	TimerWave.create(1),
+#	MultiWave.create([
+#		DialogueWave.create(self, 3, "They're everywhere!"),
+#		TwoTriangles.create(12, 5, 1),
+#	]),
 	preload("res://Waves/OrbitingBulletTest.tscn").instance(),
 ]
 var current_wave = null

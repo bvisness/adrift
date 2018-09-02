@@ -9,6 +9,7 @@ onready var shield = get_node('Shield')
 onready var speed = 140;
 
 onready var health_bar = find_node("HealthBar")
+onready var sticky_bar = find_node("StickyBar")
 
 const TIME_UNTIL_RECHARGE = 3
 const RECHARGE_SPEED = 5.0
@@ -16,7 +17,25 @@ const RECHARGE_SPEED = 5.0
 var health = 100.0
 var dead = false
 
+const BulletAnchor = preload("res://BulletAnchor.tscn")
+
+const STICKY_PER_BULLET = 1
+const STICKY_PER_SECOND = 20
+
+var sticky = 100.0
+var sticky_active = false
+var sticky_anchors = []
+onready var anchors_root = get_node('Shield/StickyAnchors')
+
 func _ready():
+	var panels = [
+		get_node("Shield/ShieldPanel"),
+		get_node("Shield/ShieldPanel2"),
+		get_node("Shield/ShieldPanel3"),
+	]
+	for panel in panels:
+		panel.connect("hit", self, "_on_panel_hit")
+	
 	hit_stopwatch.start()
 
 func _process(delta):
@@ -30,6 +49,19 @@ func _process(delta):
 			shield.rotate_y(deg2rad(speed) * delta)
 		if Input.is_key_pressed(KEY_RIGHT):
 			shield.rotate_y(deg2rad(-speed) * delta)
+			
+		# Handle sticky
+		if Input.is_key_pressed(KEY_SPACE):
+			set_sticky(sticky - (STICKY_PER_SECOND * delta))
+			if sticky_active and sticky <= 0:
+				release_stickies()
+			if not sticky_active and sticky > 0:
+				sticky_anchors = []
+				sticky_active = true
+		else:
+			if sticky_active:
+				release_stickies()
+			sticky_active = false
 
 		# Recharge health
 		if hit_stopwatch.time >= TIME_UNTIL_RECHARGE:
@@ -50,3 +82,21 @@ func hit(entity):
 func die():
 	emit_signal("died")
 	dead = true
+	
+func set_sticky(value):
+	sticky = clamp(float(value), 0, 100)
+	sticky_bar.value = sticky
+
+func _on_panel_hit(entity):
+	if sticky_active:
+		# stick 'em
+		var anchor = BulletAnchor.instance()
+		anchor.init(entity, shield)
+		anchors_root.add_child(anchor)
+	else:
+		# recharge
+		set_sticky(sticky + STICKY_PER_BULLET)
+
+func release_stickies():
+	for anchor in anchors_root.get_children():
+		anchor.release()
