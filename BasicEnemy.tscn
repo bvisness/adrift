@@ -2,19 +2,11 @@
 
 [ext_resource path="res://BasicEnemy.gd" type="Script" id=1]
 [ext_resource path="res://BasicEnemyBody.gd" type="Script" id=2]
-
-[sub_resource type="PrismMesh" id=1]
-
-custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
-left_to_right = 0.5
-size = Vector3( 2, 2, 2 )
-subdivide_width = 0
-subdivide_height = 0
-subdivide_depth = 0
+[ext_resource path="res://EnemyShipScene.tscn" type="PackedScene" id=3]
 
 [sub_resource type="BoxShape" id=2]
 
-extents = Vector3( 0.416928, 0.462746, 0.448958 )
+extents = Vector3( 1.14236, 0.462746, 0.812361 )
 
 [node name="BasicEnemy" type="Spatial"]
 
@@ -43,25 +35,14 @@ collision/safe_margin = 0.001
 script = ExtResource( 2 )
 _sections_unfolded = [ "Collision", "Transform" ]
 
-[node name="MeshInstance" type="MeshInstance" parent="KinematicBody" index="0"]
+[node name="CollisionShape" type="CollisionShape" parent="KinematicBody" index="0"]
 
-transform = Transform( -1.93868e-008, 0.443518, 1.93868e-008, 0, -1.93868e-008, 0.443518, 0.443518, 1.93868e-008, 8.47424e-016, 0, 0, 0 )
-layers = 1
-material_override = null
-cast_shadow = 1
-extra_cull_margin = 0.0
-use_in_baked_light = false
-lod_min_distance = 0.0
-lod_min_hysteresis = 0.0
-lod_max_distance = 0.0
-lod_max_hysteresis = 0.0
-mesh = SubResource( 1 )
-skeleton = NodePath("..")
-material/0 = null
-
-[node name="CollisionShape" type="CollisionShape" parent="KinematicBody" index="1"]
-
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.551605, 0, 0 )
 shape = SubResource( 2 )
 disabled = false
+
+[node name="Scene Root" parent="KinematicBody" index="1" instance=ExtResource( 3 )]
+
+transform = Transform( -4.37114e-008, 0, 1, 0, 1, 0, -1, 0, -4.37114e-008, 0, 0, 0 )
 
 

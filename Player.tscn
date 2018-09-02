@@ -15,7 +15,7 @@
 radius = 1.43387
 height = 2.02136
 
-[node name="Player" type="Spatial" index="0"]
+[node name="Player" type="Spatial"]
 
 script = ExtResource( 1 )
 

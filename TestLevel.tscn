@@ -29,7 +29,7 @@ _sections_unfolded = [ "Font", "Settings" ]
 
 extents = Vector3( 1, 24.4164, 44.1058 )
 
-[node name="GameRoot" type="Spatial"]
+[node name="GameRoot" type="Spatial" index="0"]
 
 script = ExtResource( 1 )
 
