@@ -2,12 +2,13 @@ extends "res://Waves/SimpleEnemyWave.gd"
 
 var spiral_rotate_speed = 60
 
-static func create(orbit_distance, orbit_speed, fire_time, spiral_rotate_speed):
+static func create(orbit_distance, orbit_speed, fire_time, spiral_rotate_speed, timeout = 10):
 	var wave = preload("res://Waves/BasicTriangleSpiral.tscn").instance()
 	wave.orbit_distance = orbit_distance
 	wave.orbit_speed = orbit_speed
 	wave.fire_time = fire_time
 	wave.spiral_rotate_speed = spiral_rotate_speed
+	wave.timeout = timeout
 	
 	return wave
 

@@ -24,3 +24,11 @@ func get_valid(tag = null):
 			result.append(s.ref.get_ref())
 	
 	return result
+
+func get_all_refs(tag = null):
+	var result = []
+	for s in enemies:
+		if !tag or s.tag == tag:
+			result.append(s.ref)
+	
+	return result

@@ -6,9 +6,17 @@ const MultiWave = preload("res://Waves/MultiWave.gd")
 const BasicTriangle = preload("res://Waves/BasicTriangle.gd")
 const BasicTriangleSpiral = preload("res://Waves/BasicTriangleSpiral.gd")
 const TwoTriangles = preload("res://Waves/TwoTriangles.gd")
+const VariableEnemies = preload("res://Waves/VariableEnemies.gd")
+const TwoAlternating = preload("res://Waves/TwoAlternating.gd")
 
 var waves = [
-#	BasicTriangleSpiral.create(10, 5, 1, 60),
+	TwoAlternating.create(12, 5, 0.65, 10),
+	VariableEnemies.create(40, 15, -15, 0.1, 999999),
+	MultiWave.create([
+		VariableEnemies.create(15, 15, 15, 0.5, 999999),
+		VariableEnemies.create(15, 18, 17, 0.5, 999999),
+	]),
+	BasicTriangleSpiral.create(10, 5, 1, 60),
 	TwoTriangles.create(12, 5, 1),
 	TimerWave.create(1),
 	DialogueWave.create(self, 3, "We're under attack! Keep our shields up!"),
