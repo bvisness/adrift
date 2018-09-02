@@ -19,8 +19,8 @@ var dead = false
 
 const BulletAnchor = preload("res://BulletAnchor.tscn")
 
-const STICKY_PER_BULLET = 1
-const STICKY_PER_SECOND = 20
+const STICKY_PER_BULLET = 0.5
+const STICKY_PER_SECOND = 10
 
 var sticky = 100.0
 var sticky_active = false

@@ -19,6 +19,9 @@ extents = Vector3( 0.416928, 0.462746, 0.448958 )
 [node name="BasicEnemy" type="Spatial"]
 
 script = ExtResource( 1 )
+fire_type = null
+bullet_speed = 4
+spiral_rotate_speed = 60
 
 [node name="KinematicBody" type="KinematicBody" parent="." index="0" groups=[
 "enemies",

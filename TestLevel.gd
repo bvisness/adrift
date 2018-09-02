@@ -4,20 +4,26 @@ const TimerWave = preload("res://Waves/TimerWave.gd")
 const DialogueWave = preload("res://Waves/DialogueWave.gd")
 const MultiWave = preload("res://Waves/MultiWave.gd")
 const BasicTriangle = preload("res://Waves/BasicTriangle.gd")
+const BasicTriangleSpiral = preload("res://Waves/BasicTriangleSpiral.gd")
 const TwoTriangles = preload("res://Waves/TwoTriangles.gd")
 
 var waves = [
-#	TwoTriangles.create(12, 5, 1),
-#	TimerWave.create(1),
-#	DialogueWave.create(self, 3, "We're under attack! Keep our shields up!"),
-#	BasicTriangle.create(10, 5, 1),
-#	TimerWave.create(1),
-#	BasicTriangle.create(10, 30, 0.5),
-#	TimerWave.create(1),
-#	MultiWave.create([
-#		DialogueWave.create(self, 3, "They're everywhere!"),
-#		TwoTriangles.create(12, 5, 1),
-#	]),
+#	BasicTriangleSpiral.create(10, 5, 1, 60),
+	TwoTriangles.create(12, 5, 1),
+	TimerWave.create(1),
+	DialogueWave.create(self, 3, "We're under attack! Keep our shields up!"),
+	BasicTriangle.create(10, 5, 1),
+	TimerWave.create(1),
+	BasicTriangle.create(10, 30, 0.5),
+	TimerWave.create(1),
+	MultiWave.create([
+		DialogueWave.create(self, 3, "They're everywhere!"),
+		TwoTriangles.create(12, 5, 1),
+	]),
+	MultiWave.create([
+		BasicTriangleSpiral.create(10, 10, 1, 50),
+		BasicTriangleSpiral.create(13.5, -10, 1, -50),
+	]),
 	preload("res://Waves/OrbitingBulletTest.tscn").instance(),
 ]
 var current_wave = null
