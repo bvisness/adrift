@@ -1,17 +1,19 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://TestLevel.gd" type="Script" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Asteroid.tres" type="Material" id=3]
-[ext_resource path="res://AsteroidMesh.tres" type="ArrayMesh" id=4]
-[ext_resource path="res://Environment.tres" type="Environment" id=5]
-[ext_resource path="res://ui/fonts/orbitron/orbitron-black.otf" type="DynamicFontData" id=6]
-[ext_resource path="res://assets/sound/wavecompleteben.wav" type="AudioStream" id=7]
-[ext_resource path="res://assets/sound/gamecompleteben.wav" type="AudioStream" id=8]
-[ext_resource path="res://ui/fonts/orbitron/orbitron-medium.otf" type="DynamicFontData" id=9]
-[ext_resource path="res://BulletKiller.gd" type="Script" id=10]
+[ext_resource path="res://ActualCam.gd" type="Script" id=3]
+[ext_resource path="res://Asteroid.tres" type="Material" id=4]
+[ext_resource path="res://AsteroidMesh.tres" type="ArrayMesh" id=5]
+[ext_resource path="res://Environment.tres" type="Environment" id=6]
+[ext_resource path="res://ui/fonts/orbitron/orbitron-medium.otf" type="DynamicFontData" id=7]
+[ext_resource path="res://ui/FadeItem.gd" type="Script" id=8]
+[ext_resource path="res://ui/fonts/orbitron/orbitron-black.otf" type="DynamicFontData" id=9]
+[ext_resource path="res://assets/sound/wavecompleteben.wav" type="AudioStream" id=10]
+[ext_resource path="res://assets/sound/gamecompleteben.wav" type="AudioStream" id=11]
+[ext_resource path="res://BulletKiller.gd" type="Script" id=12]
 
-[sub_resource type="ParticlesMaterial" id=4]
+[sub_resource type="ParticlesMaterial" id=1]
 
 render_priority = 0
 trail_divisor = 1
@@ -49,23 +51,40 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Angular Velocity", "Emission Shape", "Flags", "Gravity", "Initial Velocity", "Scale", "Spread" ]
 
-[sub_resource type="DynamicFont" id=1]
-
-size = 65
-use_mipmaps = false
-use_filter = false
-font_data = ExtResource( 6 )
-_sections_unfolded = [ "Font", "Settings" ]
-
 [sub_resource type="DynamicFont" id=2]
 
-size = 23
+size = 120
+use_mipmaps = true
+use_filter = false
+extra_spacing_char = 25
+font_data = ExtResource( 7 )
+_sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
+
+[sub_resource type="DynamicFont" id=3]
+
+size = 30
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 7 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[sub_resource type="DynamicFont" id=4]
+
+size = 65
 use_mipmaps = false
 use_filter = false
 font_data = ExtResource( 9 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[sub_resource type="BoxShape" id=3]
+[sub_resource type="DynamicFont" id=5]
+
+size = 23
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 7 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[sub_resource type="BoxShape" id=6]
 
 extents = Vector3( 1, 24.4164, 44.1058 )
 
@@ -104,7 +123,7 @@ directional_shadow_depth_range = 0
 directional_shadow_max_distance = 200.0
 _sections_unfolded = [ "Light" ]
 
-[node name="Camera" type="Camera" parent="." index="2"]
+[node name="ActualCam" type="Camera" parent="." index="2"]
 
 transform = Transform( 1, 0, 0, 0, -4.37114e-008, 1, 0, -1, -4.37114e-008, 0, 37.5526, 0 )
 keep_aspect = 1
@@ -119,11 +138,12 @@ fov = 50.0494
 size = 1.0
 near = 0.05
 far = 200.0
+script = ExtResource( 3 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="TitleScreenCam" type="Camera" parent="." index="3"]
+[node name="GameCam" type="Camera" parent="." index="3"]
 
-transform = Transform( 1, 0, 0, 0, 0.983916, 0.17863, 0, -0.17863, 0.983916, 0, 16.6799, 30.1287 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-008, 1, 0, -1, -4.37114e-008, 0, 37.5526, 0 )
 keep_aspect = 1
 cull_mask = 1048575
 environment = null
@@ -138,11 +158,28 @@ near = 0.05
 far = 200.0
 _sections_unfolded = [ "Transform" ]
 
-[node name="Asteroids" type="Particles" parent="." index="4"]
+[node name="TitleScreenCam" type="Camera" parent="." index="4"]
+
+transform = Transform( 1, 0, 0, 0, 0.969634, 0.244558, 0, -0.244558, 0.969634, 0, 16.6799, 30.1287 )
+keep_aspect = 1
+cull_mask = 1048575
+environment = null
+h_offset = 0.0
+v_offset = 0.0
+doppler_tracking = 0
+projection = 0
+current = false
+fov = 50.0
+size = 1.0
+near = 0.05
+far = 200.0
+_sections_unfolded = [ "Transform" ]
+
+[node name="Asteroids" type="Particles" parent="." index="5"]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -80.8589, -185.07 )
 layers = 1
-material_override = ExtResource( 3 )
+material_override = ExtResource( 4 )
 cast_shadow = 1
 extra_cull_margin = 0.0
 use_in_baked_light = false
@@ -163,16 +200,16 @@ fract_delta = true
 visibility_aabb = AABB( -59.134, -127.238, -330.31, 118.268, 254.477, 660.621 )
 local_coords = true
 draw_order = 0
-process_material = SubResource( 4 )
+process_material = SubResource( 1 )
 draw_passes = 1
-draw_pass_1 = ExtResource( 4 )
+draw_pass_1 = ExtResource( 5 )
 _sections_unfolded = [ "Draw Passes", "Geometry", "Process Material", "Time", "Transform" ]
 
-[node name="Asteroids2" type="Particles" parent="." index="5"]
+[node name="Asteroids2" type="Particles" parent="." index="6"]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -118.11, 43.2328, -208.071 )
 layers = 1
-material_override = ExtResource( 3 )
+material_override = ExtResource( 4 )
 cast_shadow = 1
 extra_cull_margin = 0.0
 use_in_baked_light = false
@@ -193,16 +230,16 @@ fract_delta = true
 visibility_aabb = AABB( -83.1124, -127.238, -330.31, 166.225, 254.477, 660.621 )
 local_coords = true
 draw_order = 0
-process_material = SubResource( 4 )
+process_material = SubResource( 1 )
 draw_passes = 1
-draw_pass_1 = ExtResource( 4 )
+draw_pass_1 = ExtResource( 5 )
 _sections_unfolded = [ "Draw Passes", "Geometry", "Process Material", "Time", "Transform" ]
 
-[node name="Asteroids3" type="Particles" parent="." index="6"]
+[node name="Asteroids3" type="Particles" parent="." index="7"]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 141.979, 43.2328, -208.071 )
 layers = 1
-material_override = ExtResource( 3 )
+material_override = ExtResource( 4 )
 cast_shadow = 1
 extra_cull_margin = 0.0
 use_in_baked_light = false
@@ -223,16 +260,16 @@ fract_delta = true
 visibility_aabb = AABB( -83.1124, -127.238, -330.31, 166.225, 254.477, 660.621 )
 local_coords = true
 draw_order = 0
-process_material = SubResource( 4 )
+process_material = SubResource( 1 )
 draw_passes = 1
-draw_pass_1 = ExtResource( 4 )
+draw_pass_1 = ExtResource( 5 )
 _sections_unfolded = [ "Draw Passes", "Geometry", "Process Material", "Time", "Transform" ]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="7"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="8"]
 
-environment = ExtResource( 5 )
+environment = ExtResource( 6 )
 
-[node name="UI" type="MarginContainer" parent="." index="8"]
+[node name="UI" type="MarginContainer" parent="." index="9"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -250,7 +287,110 @@ custom_constants/margin_left = 20
 custom_constants/margin_bottom = 20
 _sections_unfolded = [ "custom_constants" ]
 
-[node name="GameOver" type="CenterContainer" parent="UI" index="0"]
+[node name="TitleScreen" type="VBoxContainer" parent="UI" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 1004.0
+margin_bottom = 580.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/TitleScreen" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 984.0
+margin_bottom = 220.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_constants/margin_top = 100
+_sections_unfolded = [ "custom_constants" ]
+
+[node name="Title" type="Label" parent="UI/TitleScreen/MarginContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 8.0
+margin_top = 100.0
+margin_right = 984.0
+margin_bottom = 220.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 2 )
+text = "ADRIFT"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+script = ExtResource( 8 )
+_sections_unfolded = [ "Visibility", "custom_fonts" ]
+
+[node name="MarginContainer2" type="MarginContainer" parent="UI/TitleScreen" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 224.0
+margin_right = 984.0
+margin_bottom = 325.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_constants/margin_top = 60
+_sections_unfolded = [ "custom_constants" ]
+
+[node name="CTA" type="Label" parent="UI/TitleScreen/MarginContainer2" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 8.0
+margin_top = 65.0
+margin_right = 984.0
+margin_bottom = 96.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 3 )
+text = "press space"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+script = ExtResource( 8 )
+_sections_unfolded = [ "custom_fonts" ]
+
+[node name="GameOver" type="CenterContainer" parent="UI" index="1"]
 
 visible = false
 anchor_left = 0.0
@@ -286,7 +426,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 4 )
 text = "Game Over"
 percent_visible = 1.0
 lines_skipped = 0
@@ -313,7 +453,7 @@ size_flags_vertical = 3
 color = Color( 0, 0, 0, 0.436471 )
 _sections_unfolded = [ "Rect", "Size Flags", "Visibility" ]
 
-[node name="WaveComplete" type="CenterContainer" parent="UI" index="1"]
+[node name="WaveComplete" type="CenterContainer" parent="UI" index="2"]
 
 visible = false
 anchor_left = 0.0
@@ -335,7 +475,7 @@ _sections_unfolded = [ "Visibility" ]
 
 [node name="WaveCompletePlayer" type="AudioStreamPlayer" parent="UI/WaveComplete" index="0"]
 
-stream = ExtResource( 7 )
+stream = ExtResource( 10 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
@@ -358,7 +498,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 4 )
 text = "Wave Complete"
 percent_visible = 1.0
 lines_skipped = 0
@@ -385,7 +525,7 @@ size_flags_vertical = 3
 color = Color( 0, 0, 0, 0.436471 )
 _sections_unfolded = [ "Rect", "Size Flags", "Visibility" ]
 
-[node name="GameComplete" type="CenterContainer" parent="UI" index="2"]
+[node name="GameComplete" type="CenterContainer" parent="UI" index="3"]
 
 visible = false
 anchor_left = 0.0
@@ -407,7 +547,7 @@ _sections_unfolded = [ "Visibility" ]
 
 [node name="GameCompletePlayer" type="AudioStreamPlayer" parent="UI/GameComplete" index="0"]
 
-stream = ExtResource( 8 )
+stream = ExtResource( 11 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
@@ -430,7 +570,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 4 )
 text = "Game Complete"
 percent_visible = 1.0
 lines_skipped = 0
@@ -457,7 +597,7 @@ size_flags_vertical = 3
 color = Color( 0, 0, 0, 0.436471 )
 _sections_unfolded = [ "Rect", "Size Flags", "Visibility" ]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI" index="3"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI" index="4"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -509,14 +649,14 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 5 )
 text = "They're coming! Keep our shields up!"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "custom_fonts" ]
 
-[node name="BulletKiller" type="KinematicBody" parent="." index="9" groups=[
+[node name="BulletKiller" type="KinematicBody" parent="." index="10" groups=[
 "bullet_can_hit",
 ]]
 
@@ -531,32 +671,32 @@ axis_lock_angular_x = false
 axis_lock_angular_y = false
 axis_lock_angular_z = false
 collision/safe_margin = 0.001
-script = ExtResource( 10 )
+script = ExtResource( 12 )
 _sections_unfolded = [ "Collision" ]
 
 [node name="CollisionShape" type="CollisionShape" parent="BulletKiller" index="0"]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 44.0357, 0, 0 )
-shape = SubResource( 3 )
+shape = SubResource( 6 )
 disabled = false
 
 [node name="CollisionShape2" type="CollisionShape" parent="BulletKiller" index="1"]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -43.4033, 0, 0 )
-shape = SubResource( 3 )
+shape = SubResource( 6 )
 disabled = false
 _sections_unfolded = [ "Transform" ]
 
 [node name="CollisionShape3" type="CollisionShape" parent="BulletKiller" index="2"]
 
 transform = Transform( -4.37114e-008, 0, 1, 0, 1, 0, -1, 0, -4.37114e-008, -1.89722e-006, 0, -43.4033 )
-shape = SubResource( 3 )
+shape = SubResource( 6 )
 disabled = false
 
 [node name="CollisionShape4" type="CollisionShape" parent="BulletKiller" index="3"]
 
 transform = Transform( -4.37114e-008, 0, 1, 0, 1, 0, -1, 0, -4.37114e-008, 1.89722e-006, 0, 43.4033 )
-shape = SubResource( 3 )
+shape = SubResource( 6 )
 disabled = false
 _sections_unfolded = [ "Transform" ]
 

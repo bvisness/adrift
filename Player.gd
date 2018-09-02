@@ -8,6 +8,7 @@ onready var hit_stopwatch = SyncStopwatch.new()
 onready var shield = get_node('Shield')
 onready var speed = 140;
 
+onready var UI = find_node("UI")
 onready var health_bar = find_node("HealthBar")
 onready var sticky_bar = find_node("StickyBar")
 
@@ -28,34 +29,40 @@ var sticky_active = false
 var sticky_anchors = []
 onready var anchors_root = get_node('Shield/StickyAnchors')
 
+var input_active = false
+var shield_idle_rotate_speed = 10
+
 func _ready():
+	UI.set_alpha(0)
+	
 	shield.connect_panel_signals("hit", self, "_on_panel_hit")
 	hit_stopwatch.start()
 
 func _process(delta):
 	hit_stopwatch.process(delta)
 	
-	if Input.is_key_pressed(KEY_ESCAPE):
-			get_tree().quit()
-	
 	if not dead:
-		if Input.is_key_pressed(KEY_LEFT):
-			shield.rotate_y(deg2rad(speed) * delta)
-		if Input.is_key_pressed(KEY_RIGHT):
-			shield.rotate_y(deg2rad(-speed) * delta)
-			
-		# Handle sticky
-		if Input.is_key_pressed(KEY_SPACE):
-			set_sticky(sticky - (STICKY_PER_SECOND * delta))
-			if sticky_active and sticky <= 0:
-				release_stickies()
-			if not sticky_active and sticky > 0:
-				sticky_anchors = []
-				sticky_active = true
+		if input_active:
+			if Input.is_key_pressed(KEY_LEFT):
+				shield.rotate_y(deg2rad(speed) * delta)
+			if Input.is_key_pressed(KEY_RIGHT):
+				shield.rotate_y(deg2rad(-speed) * delta)
+				
+			# Handle sticky
+			if Input.is_key_pressed(KEY_SPACE):
+				set_sticky(sticky - (STICKY_PER_SECOND * delta))
+				if sticky_active and sticky <= 0:
+					release_stickies()
+				if not sticky_active and sticky > 0:
+					sticky_anchors = []
+					sticky_active = true
+			else:
+				if sticky_active:
+					release_stickies()
+				sticky_active = false
 		else:
-			if sticky_active:
-				release_stickies()
-			sticky_active = false
+			# idly rotate the shields
+			shield.rotate_y(deg2rad(shield_idle_rotate_speed) * delta)
 		
 		# Yes, I know this happens every time. Whatever.
 		shield.set_sticky(sticky_active)
@@ -63,6 +70,10 @@ func _process(delta):
 		# Recharge health
 		if hit_stopwatch.time >= TIME_UNTIL_RECHARGE:
 			set_health(health + RECHARGE_SPEED * delta)
+
+func activate():
+	input_active = true
+	UI.fade(2, 1)
 
 func set_health(value):
 	health = clamp(float(value), 0, 100)

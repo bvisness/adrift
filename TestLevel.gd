@@ -15,6 +15,7 @@ const VariableEnemies = preload("res://Waves/VariableEnemies.gd")
 const TwoAlternating = preload("res://Waves/TwoAlternating.gd")
 
 var waves = [
+	TimerWave.create(3),
 	MultiWave.create([
 		VariableEnemies.create(1, 1, 10, -5, 1, 20).rotate(-45),
 		OptionalWave.create(SequenceWave.create([
@@ -158,6 +159,7 @@ onready var dialogue_stopwatch = SyncStopwatch.new()
 onready var wave_complete_stopwatch = SyncStopwatch.new()
 onready var game_complete_stopwatch = SyncStopwatch.new()
 
+var game_started = false
 var player_active = true
 
 onready var player = get_node("Player")
@@ -172,16 +174,43 @@ onready var dialogue_label = get_node("UI/VBoxContainer/DialogueContainer/Dialog
 var dialogue_active = false
 var dialogue_duration = 1
 
+onready var main_cam = get_node("ActualCam")
+onready var game_cam = get_node("GameCam")
+onready var title_screen_cam = get_node("TitleScreenCam")
+
+onready var title_label = find_node("Title")
+onready var cta_label = find_node("CTA")
+
 func _ready():
+	main_cam.snap_to_cam(title_screen_cam)
+	
+	title_label.set_alpha(0)
+	title_label.fade(4, 0.8)
+	
+	cta_label.set_alpha(0)
+	cta_label.fade(4, 0.8)
+	
 	player.connect("died", self, "_on_player_died")
 	game_over.visible = false
 	wave_complete.visible = false
-	next_wave()
 
 func _process(delta):
 	dialogue_stopwatch.process(delta)
 	wave_complete_stopwatch.process(delta)
 	game_complete_stopwatch.process(delta)
+	
+	if Input.is_key_pressed(KEY_ESCAPE):
+		get_tree().quit()
+		
+	if not game_started and Input.is_key_pressed(KEY_SPACE):
+		game_started = true
+		player.activate()
+		main_cam.lerp_to_cam(game_cam)
+		
+		title_label.fade(1, 0)
+		cta_label.fade(1, 0)
+		
+		next_wave()
 
 	if player_active and current_wave and current_wave.is_finished():
 		next_wave()
