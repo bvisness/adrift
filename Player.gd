@@ -14,6 +14,7 @@ onready var sticky_bar = find_node("StickyBar")
 const TIME_UNTIL_RECHARGE = 3
 const RECHARGE_SPEED = 5.0
 
+var invincible = false
 var health = 100.0
 var dead = false
 
@@ -71,9 +72,10 @@ func set_health(value):
 		die()
 
 func hit(entity):
-	set_health(health - entity.DAMAGE)
-	entity.kill()
-	hit_stopwatch.reset()
+	if not invincible:
+		set_health(health - entity.DAMAGE)
+		entity.kill()
+		hit_stopwatch.reset()
 
 func die():
 	emit_signal("died")

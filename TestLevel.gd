@@ -32,7 +32,7 @@ var waves = [
 	TwoTriangles.create(12, 5, 1),
 	TimerWave.create(0.5),
 	WaveComplete.create(self),
-	
+
 	DialogueWave.create(self, 4, "You haven't forgotten about our attractor field, have you?"),
 	MultiWave.create([
 		DialogueWave.create(self, 5, "Hold space to absorb bullets and shoot them back!"),
@@ -48,11 +48,11 @@ var waves = [
 	]),
 	VariableEnemies.create(9, 3, 10, 15, 0.4, 10, 3, 3),
 	MultiWave.create([
-		VariableEnemies.create(3, 3, 10, 15, 1, 15),
-		VariableEnemies.create(3, 3, 10, 15.5, 1, 15).rotate(5),
-		VariableEnemies.create(3, 3, 10, 16, 1, 15).rotate(10),
-		VariableEnemies.create(3, 3, 10, 16.5, 1, 15).rotate(15),
-		VariableEnemies.create(3, 3, 10, 17, 1, 15).rotate(20),
+		VariableEnemies.create(3, 3, 13, 15, 1, 15),
+		VariableEnemies.create(3, 3, 13, 15.5, 1, 15).rotate(7),
+		VariableEnemies.create(3, 3, 13, 16, 1, 15).rotate(14),
+		VariableEnemies.create(3, 3, 13, 16.5, 1, 15).rotate(21),
+		VariableEnemies.create(3, 3, 13, 17, 1, 15).rotate(28),
 	]),
 	TimerWave.create(0.5),
 	WaveComplete.create(self),
@@ -240,3 +240,5 @@ func _on_show_game_complete():
 	game_complete_stopwatch.start()
 	game_complete.visible = true
 	game_complete_player.play()
+	
+	player.invincible = true
