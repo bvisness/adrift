@@ -32,6 +32,8 @@ onready var anchors_root = get_node('Shield/StickyAnchors')
 var input_active = false
 var shield_idle_rotate_speed = 10
 
+onready var shield_up_sound = get_node("Sounds/ShieldUp")
+
 func _ready():
 	UI.set_alpha(0)
 	
@@ -56,6 +58,7 @@ func _process(delta):
 				if not sticky_active and sticky > 0:
 					sticky_anchors = []
 					sticky_active = true
+					shield_up_sound.play()
 			else:
 				if sticky_active:
 					release_stickies()

@@ -15,104 +15,104 @@ const VariableEnemies = preload("res://Waves/VariableEnemies.gd")
 const TwoAlternating = preload("res://Waves/TwoAlternating.gd")
 
 var waves = [
-	TimerWave.create(3),
-	MultiWave.create([
-		VariableEnemies.create(1, 1, 10, -5, 1, 20).rotate(-45),
-		OptionalWave.create(SequenceWave.create([
-			TimerWave.create(10),
-			DialogueWave.create(self, 5, "Try to reflect their shots back at them!"),
-		])),
-	]),
-	TimerWave.create(1),
-	BasicTriangle.create(10, 5, 1, 20),
-	TimerWave.create(1),
-	MultiWave.create([
-		TwoAlternating.create(12, 5, 0.65, 10).rotate(-20),
-		DialogueWave.create(self, 3, "Watch your backside!"),
-	]),
-	TwoTriangles.create(12, 5, 1),
-	TimerWave.create(0.5),
-	WaveComplete.create(self),
-
-	DialogueWave.create(self, 4, "You haven't forgotten about our attractor field, have you?"),
-	MultiWave.create([
-		DialogueWave.create(self, 5, "Hold space to absorb bullets and shoot them back!"),
-		BasicTriangleBurst.create(10, 20, .3, 4, 8, 20),
-	]),
-	TimerWave.create(0.5),
-	MultiWave.create([
-		BasicTriangleBurst.create(10, -20, .3, 4, 8, 20),
-		SequenceWave.create([
-			TimerWave.create(0.3),
-			BasicTriangleBurst.create(12, 20, .3, 4, 8, 20),
-		]),
-	]),
-	VariableEnemies.create(9, 3, 10, 15, 0.4, 10, 3, 3),
-	MultiWave.create([
-		VariableEnemies.create(3, 3, 13, 15, 1, 15),
-		VariableEnemies.create(3, 3, 13, 15.5, 1, 15).rotate(7),
-		VariableEnemies.create(3, 3, 13, 16, 1, 15).rotate(14),
-		VariableEnemies.create(3, 3, 13, 16.5, 1, 15).rotate(21),
-		VariableEnemies.create(3, 3, 13, 17, 1, 15).rotate(28),
-	]),
-	TimerWave.create(0.5),
-	WaveComplete.create(self),
-	
-	DialogueWave.create(self, 3, "More on our scanners. These look...different."),
-	MultiWave.create([
-		BasicTriangleSpiral.create(10, 5, 1, 60),
-		SequenceWave.create([
-			TimerWave.create(3.5),
-			DialogueWave.create(self, 2, "Whoa!"),
-		]),
-	]),
-	TimerWave.create(1),
-	MultiWave.create([
-		VariableEnemies.create(3, 3, 10, 5, 1.2, 10, 1, 0).spiral(25),
-		SequenceWave.create([
-			TimerWave.create(0.6),
-			VariableEnemies.create(3, 3, 10, 5, 1.2, 10, 1, 0).spiral(-25).rotate(-55),
-		]),
-	]),
-	MultiWave.create([
-		VariableEnemies.create(3, 3, 10, 24, 0.3, 10, 3, 3).spiral(40),
-		VariableEnemies.create(3, 3, 10, 20, 0.3, 10, 3, 3).spiral(40).rotate(-5),
-	]),
-	TimerWave.create(1),
-	MultiWave.create([
-		VariableEnemies.create(3, 3, 10, 20, 0.3, 20, 4, 4).spiral(40),
-		SequenceWave.create([
-			TimerWave.create(1.2),
-			VariableEnemies.create(3, 3, 12, 10, 0.3, 20, 4, 4),
-		]),
-	]),
-	TimerWave.create(1),
-	WaveComplete.create(self),
-	
-	TimerWave.create(0.5),
-	DialogueWave.create(self, 3, "We're almost back online. Just a little bit longer."),
-	TimerWave.create(1),
-	MultiWave.create([
-		DialogueWave.create(self, 3, "What is THAT?!"),
-		SequenceWave.create([
-			TimerWave.create(1),
-			VariableEnemies.create(45, 3, 15, -15, 0.1, 20),
-		]),
-	]),
-	TimerWave.create(2),
-	MultiWave.create([
-		DialogueWave.create(self, 3, "How many of these guys ARE there?"),
-		SequenceWave.create([
-			TimerWave.create(1),
-			VariableEnemies.create(45, 3, 15, -15, 0.1, 20).spiral(60),
-		]),
-	]),
-	DialogueWave.create(self, 0.5, "Just..."),
-	TimerWave.create(0.3),
-	DialogueWave.create(self, 0.5, "a little..."),
-	TimerWave.create(0.3),
-	DialogueWave.create(self, 0.5, "longer!"),
-	TimerWave.create(1),
+#	TimerWave.create(3),
+#	MultiWave.create([
+#		VariableEnemies.create(1, 1, 10, -5, 1, 20).rotate(-45),
+#		OptionalWave.create(SequenceWave.create([
+#			TimerWave.create(10),
+#			DialogueWave.create(self, 5, "Try to reflect their shots back at them!"),
+#		])),
+#	]),
+#	TimerWave.create(1),
+#	BasicTriangle.create(10, 5, 1, 20),
+#	TimerWave.create(1),
+#	MultiWave.create([
+#		TwoAlternating.create(12, 5, 0.65, 10).rotate(-20),
+#		DialogueWave.create(self, 3, "Watch your backside!"),
+#	]),
+#	TwoTriangles.create(12, 5, 1),
+#	TimerWave.create(0.5),
+#	WaveComplete.create(self),
+#
+#	DialogueWave.create(self, 4, "You haven't forgotten about our attractor field, have you?"),
+#	MultiWave.create([
+#		DialogueWave.create(self, 5, "Hold space to absorb bullets and shoot them back!"),
+#		BasicTriangleBurst.create(10, 20, .3, 4, 8, 20),
+#	]),
+#	TimerWave.create(0.5),
+#	MultiWave.create([
+#		BasicTriangleBurst.create(10, -20, .3, 4, 8, 20),
+#		SequenceWave.create([
+#			TimerWave.create(0.3),
+#			BasicTriangleBurst.create(12, 20, .3, 4, 8, 20),
+#		]),
+#	]),
+#	VariableEnemies.create(9, 3, 10, 15, 0.4, 10, 3, 3),
+#	MultiWave.create([
+#		VariableEnemies.create(3, 3, 13, 15, 1, 15),
+#		VariableEnemies.create(3, 3, 13, 15.5, 1, 15).rotate(7),
+#		VariableEnemies.create(3, 3, 13, 16, 1, 15).rotate(14),
+#		VariableEnemies.create(3, 3, 13, 16.5, 1, 15).rotate(21),
+#		VariableEnemies.create(3, 3, 13, 17, 1, 15).rotate(28),
+#	]),
+#	TimerWave.create(0.5),
+#	WaveComplete.create(self),
+#
+#	DialogueWave.create(self, 3, "More on our scanners. These look...different."),
+#	MultiWave.create([
+#		BasicTriangleSpiral.create(10, 5, 1, 60),
+#		SequenceWave.create([
+#			TimerWave.create(3.5),
+#			DialogueWave.create(self, 2, "Whoa!"),
+#		]),
+#	]),
+#	TimerWave.create(1),
+#	MultiWave.create([
+#		VariableEnemies.create(3, 3, 10, 5, 1.2, 10, 1, 0).spiral(25),
+#		SequenceWave.create([
+#			TimerWave.create(0.6),
+#			VariableEnemies.create(3, 3, 10, 5, 1.2, 10, 1, 0).spiral(-25).rotate(-55),
+#		]),
+#	]),
+#	MultiWave.create([
+#		VariableEnemies.create(3, 3, 10, 24, 0.3, 10, 3, 3).spiral(40),
+#		VariableEnemies.create(3, 3, 10, 20, 0.3, 10, 3, 3).spiral(40).rotate(-5),
+#	]),
+#	TimerWave.create(1),
+#	MultiWave.create([
+#		VariableEnemies.create(3, 3, 10, 20, 0.3, 20, 4, 4).spiral(40),
+#		SequenceWave.create([
+#			TimerWave.create(1.2),
+#			VariableEnemies.create(3, 3, 12, 10, 0.3, 20, 4, 4),
+#		]),
+#	]),
+#	TimerWave.create(1),
+#	WaveComplete.create(self),
+#
+#	TimerWave.create(0.5),
+#	DialogueWave.create(self, 3, "We're almost back online. Just a little bit longer."),
+#	TimerWave.create(1),
+#	MultiWave.create([
+#		DialogueWave.create(self, 3, "What is THAT?!"),
+#		SequenceWave.create([
+#			TimerWave.create(1),
+#			VariableEnemies.create(45, 3, 15, -15, 0.1, 20),
+#		]),
+#	]),
+#	TimerWave.create(2),
+#	MultiWave.create([
+#		DialogueWave.create(self, 3, "How many of these guys ARE there?"),
+#		SequenceWave.create([
+#			TimerWave.create(1),
+#			VariableEnemies.create(45, 3, 15, -15, 0.1, 20).spiral(60),
+#		]),
+#	]),
+#	DialogueWave.create(self, 0.5, "Just..."),
+#	TimerWave.create(0.3),
+#	DialogueWave.create(self, 0.5, "a little..."),
+#	TimerWave.create(0.3),
+#	DialogueWave.create(self, 0.5, "longer!"),
+#	TimerWave.create(1),
 	MultiWave.create([
 		VariableEnemies.create(3, 3, 10, 5, 0.2, 60, 4, 5),
 		SequenceWave.create([
@@ -262,12 +262,12 @@ func _on_show_wave_complete():
 	wave_complete_stopwatch.reset()
 	wave_complete_stopwatch.start()
 	wave_complete.visible = true
-	wave_complete_player.play()
+#	wave_complete_player.play()
 
 func _on_show_game_complete():
 	game_complete_stopwatch.reset()
 	game_complete_stopwatch.start()
 	game_complete.visible = true
-	game_complete_player.play()
+#	game_complete_player.play()
 	
 	player.invincible = true

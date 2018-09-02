@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/kenneymodded2.wav-271d93fc4b65a4b21024b045d35b796e.sample"
+
+[deps]
+
+source_file="res://assets/sound/shots/kenneymodded2.wav"
+dest_files=[ "res://.import/kenneymodded2.wav-271d93fc4b65a4b21024b045d35b796e.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

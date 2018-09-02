@@ -21,6 +21,8 @@ export(FireType) var fire_type = NORMAL
 export(float) var bullet_speed = 4
 export(float) var spiral_rotate_speed = 60
 
+onready var shot_sound = find_node("ShotSound")
+
 func _ready():
 	if not fire_type:
 		fire_type = NORMAL
@@ -47,6 +49,9 @@ func hit(bullet):
 			die()
 
 func fire():
+	shot_sound.volume_db = rand_range(-25, -15)
+	shot_sound.pitch_scale = rand_range(0.4, 1)
+#	shot_sound.play()
 	match fire_type:
 		NORMAL:
 			var bullet = Bullet.instance()
