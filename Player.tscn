@@ -1,27 +1,21 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://PlayerBody.gd" type="Script" id=2]
-[ext_resource path="res://ShieldPanel.tscn" type="PackedScene" id=3]
-[ext_resource path="res://ui/StickyBarBorder.png" type="Texture" id=4]
-[ext_resource path="res://ui/StickyBar.png" type="Texture" id=5]
-[ext_resource path="res://ui/BarBorder.png" type="Texture" id=6]
-[ext_resource path="res://ui/Bar.png" type="Texture" id=7]
+[ext_resource path="res://Ship.dae" type="PackedScene" id=3]
+[ext_resource path="res://Shield.gd" type="Script" id=4]
+[ext_resource path="res://ShieldPanel.tscn" type="PackedScene" id=5]
+[ext_resource path="res://ui/StickyBarBorder.png" type="Texture" id=6]
+[ext_resource path="res://ui/StickyBar.png" type="Texture" id=7]
+[ext_resource path="res://ui/BarBorder.png" type="Texture" id=8]
+[ext_resource path="res://ui/Bar.png" type="Texture" id=9]
 
-[sub_resource type="CubeMesh" id=1]
-
-custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
-size = Vector3( 2, 2, 2 )
-subdivide_width = 0
-subdivide_height = 0
-subdivide_depth = 0
-
-[sub_resource type="CapsuleShape" id=2]
+[sub_resource type="CapsuleShape" id=1]
 
 radius = 1.43387
 height = 2.02136
 
-[node name="Player" type="Spatial"]
+[node name="Player" type="Spatial" index="0"]
 
 script = ExtResource( 1 )
 
@@ -42,42 +36,32 @@ axis_lock_angular_z = false
 collision/safe_margin = 0.001
 script = ExtResource( 2 )
 
-[node name="MeshInstance" type="MeshInstance" parent="KinematicBody" index="0"]
-
-layers = 1
-material_override = null
-cast_shadow = 1
-extra_cull_margin = 0.0
-use_in_baked_light = false
-lod_min_distance = 0.0
-lod_min_hysteresis = 0.0
-lod_max_distance = 0.0
-lod_max_hysteresis = 0.0
-mesh = SubResource( 1 )
-skeleton = NodePath("..")
-material/0 = null
-
-[node name="CollisionShape" type="CollisionShape" parent="KinematicBody" index="1"]
+[node name="CollisionShape" type="CollisionShape" parent="KinematicBody" index="0"]
 
 transform = Transform( 1, 0, 0, 0, -4.37114e-008, 1, 0, -1, -4.37114e-008, 0, 0, 0 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 disabled = false
+
+[node name="Ship" parent="KinematicBody" index="1" instance=ExtResource( 3 )]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.27527 )
 
 [node name="Shield" type="Spatial" parent="." index="1"]
 
+script = ExtResource( 4 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="ShieldPanel" parent="Shield" index="0" instance=ExtResource( 3 )]
+[node name="ShieldPanel" parent="Shield" index="0" instance=ExtResource( 5 )]
 
 transform = Transform( 3.06138, 0, 0, 0, 3.06138, 0, 0, 0, 3.06138, 0, 0, 0 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="ShieldPanel2" parent="Shield" index="1" instance=ExtResource( 3 )]
+[node name="ShieldPanel2" parent="Shield" index="1" instance=ExtResource( 5 )]
 
 transform = Transform( -1.53069, 0, 2.65123, 0, 3.06138, 0, -2.65123, 0, -1.53069, 0, 0, 0 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="ShieldPanel3" parent="Shield" index="2" instance=ExtResource( 3 )]
+[node name="ShieldPanel3" parent="Shield" index="2" instance=ExtResource( 5 )]
 
 transform = Transform( -1.53069, 0, -2.65123, 0, 3.06138, 0, 2.65123, 0, -1.53069, 0, 0, 0 )
 _sections_unfolded = [ "Transform" ]
@@ -156,7 +140,7 @@ mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = ExtResource( 4 )
+texture = ExtResource( 6 )
 stretch_mode = 0
 
 [node name="StickyBar" type="TextureProgress" parent="UI/VBoxContainer/CenterContainer2" index="1"]
@@ -184,7 +168,7 @@ exp_edit = false
 rounded = false
 texture_under = null
 texture_over = null
-texture_progress = ExtResource( 5 )
+texture_progress = ExtResource( 7 )
 radial_fill_degrees = 360.0
 radial_center_offset = Vector2( 0, 0 )
 nine_patch_stretch = false
@@ -222,7 +206,7 @@ mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = ExtResource( 6 )
+texture = ExtResource( 8 )
 stretch_mode = 0
 
 [node name="HealthBar" type="TextureProgress" parent="UI/VBoxContainer/CenterContainer" index="1"]
@@ -250,7 +234,7 @@ exp_edit = false
 rounded = false
 texture_under = null
 texture_over = null
-texture_progress = ExtResource( 7 )
+texture_progress = ExtResource( 9 )
 radial_fill_degrees = 360.0
 radial_center_offset = Vector2( 0, 0 )
 nine_patch_stretch = false

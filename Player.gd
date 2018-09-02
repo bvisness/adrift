@@ -28,14 +28,7 @@ var sticky_anchors = []
 onready var anchors_root = get_node('Shield/StickyAnchors')
 
 func _ready():
-	var panels = [
-		get_node("Shield/ShieldPanel"),
-		get_node("Shield/ShieldPanel2"),
-		get_node("Shield/ShieldPanel3"),
-	]
-	for panel in panels:
-		panel.connect("hit", self, "_on_panel_hit")
-	
+	shield.connect_panel_signals("hit", self, "_on_panel_hit")
 	hit_stopwatch.start()
 
 func _process(delta):
@@ -62,6 +55,9 @@ func _process(delta):
 			if sticky_active:
 				release_stickies()
 			sticky_active = false
+		
+		# Yes, I know this happens every time. Whatever.
+		shield.set_sticky(sticky_active)
 
 		# Recharge health
 		if hit_stopwatch.time >= TIME_UNTIL_RECHARGE:

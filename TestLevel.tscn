@@ -29,13 +29,41 @@ _sections_unfolded = [ "Font", "Settings" ]
 
 extents = Vector3( 1, 24.4164, 44.1058 )
 
-[node name="GameRoot" type="Spatial" index="0"]
+[node name="GameRoot" type="Spatial"]
 
 script = ExtResource( 1 )
 
 [node name="Player" parent="." index="0" instance=ExtResource( 2 )]
 
-[node name="Camera" type="Camera" parent="." index="1"]
+[node name="DirectionalLight" type="DirectionalLight" parent="." index="1"]
+
+transform = Transform( 0.800155, -0.2832, 0.528724, -0.196846, 0.708694, 0.677498, -0.566571, -0.646181, 0.511319, 6.83837, 11.141, 2.64825 )
+layers = 1
+light_color = Color( 1, 1, 1, 1 )
+light_energy = 1.62
+light_indirect_energy = 1.0
+light_negative = false
+light_specular = 0.5
+light_bake_mode = 1
+light_cull_mask = -1
+shadow_enabled = false
+shadow_color = Color( 0, 0, 0, 1 )
+shadow_bias = 0.1
+shadow_contact = 0.0
+shadow_reverse_cull_face = false
+editor_only = false
+directional_shadow_mode = 2
+directional_shadow_split_1 = 0.1
+directional_shadow_split_2 = 0.2
+directional_shadow_split_3 = 0.5
+directional_shadow_blend_splits = false
+directional_shadow_normal_bias = 0.8
+directional_shadow_bias_split_scale = 0.25
+directional_shadow_depth_range = 0
+directional_shadow_max_distance = 200.0
+_sections_unfolded = [ "Light" ]
+
+[node name="Camera" type="Camera" parent="." index="2"]
 
 transform = Transform( 1, 0, 0, 0, -4.37114e-008, 1, 0, -1, -4.37114e-008, 0, 42.9034, 0 )
 keep_aspect = 1
@@ -51,11 +79,11 @@ size = 1.0
 near = 0.05
 far = 100.0
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="2"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="3"]
 
 environment = ExtResource( 3 )
 
-[node name="UI" type="MarginContainer" parent="." index="3"]
+[node name="UI" type="MarginContainer" parent="." index="4"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -243,9 +271,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 199.0
+margin_left = 204.0
 margin_top = 247.0
-margin_right = 784.0
+margin_right = 779.0
 margin_bottom = 313.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -339,7 +367,7 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "custom_fonts" ]
 
-[node name="KinematicBody" type="KinematicBody" parent="." index="4" groups=[
+[node name="BulletKiller" type="KinematicBody" parent="." index="5" groups=[
 "bullet_can_hit",
 ]]
 
@@ -357,26 +385,26 @@ collision/safe_margin = 0.001
 script = ExtResource( 8 )
 _sections_unfolded = [ "Collision" ]
 
-[node name="CollisionShape" type="CollisionShape" parent="KinematicBody" index="0"]
+[node name="CollisionShape" type="CollisionShape" parent="BulletKiller" index="0"]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 44.0357, 0, 0 )
 shape = SubResource( 3 )
 disabled = false
 
-[node name="CollisionShape2" type="CollisionShape" parent="KinematicBody" index="1"]
+[node name="CollisionShape2" type="CollisionShape" parent="BulletKiller" index="1"]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -43.4033, 0, 0 )
 shape = SubResource( 3 )
 disabled = false
 _sections_unfolded = [ "Transform" ]
 
-[node name="CollisionShape3" type="CollisionShape" parent="KinematicBody" index="2"]
+[node name="CollisionShape3" type="CollisionShape" parent="BulletKiller" index="2"]
 
 transform = Transform( -4.37114e-008, 0, 1, 0, 1, 0, -1, 0, -4.37114e-008, -1.89722e-006, 0, -43.4033 )
 shape = SubResource( 3 )
 disabled = false
 
-[node name="CollisionShape4" type="CollisionShape" parent="KinematicBody" index="3"]
+[node name="CollisionShape4" type="CollisionShape" parent="BulletKiller" index="3"]
 
 transform = Transform( -4.37114e-008, 0, 1, 0, 1, 0, -1, 0, -4.37114e-008, 1.89722e-006, 0, 43.4033 )
 shape = SubResource( 3 )
