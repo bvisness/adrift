@@ -58,7 +58,7 @@ func _process(delta):
 				if not sticky_active and sticky > 0:
 					sticky_anchors = []
 					sticky_active = true
-					shield_up_sound.play()
+#					shield_up_sound.play()
 			else:
 				if sticky_active:
 					release_stickies()
